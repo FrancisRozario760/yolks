@@ -30,17 +30,7 @@ LABEL       org.opencontainers.image.licenses=MIT
 ENV         DEBIAN_FRONTEND=noninteractive
 
 # Install base packages and leveldb dependency
-RUN apt update && apt upgrade -y \
-    && apt -y --no-install-recommends install \
-        ca-certificates \
-        curl \
-        git \
-        unzip \
-        zip \
-        tar \
-        jq \
-        wget \
-        libleveldb1d
+RUN apt update && apt install -y libleveldb1d libsnappy1v5 libgcc-s1
 
 # Only install the needed steamcmd packages on the AMD64 build
 RUN if [ "$(uname -m)" = "x86_64" ]; then \
